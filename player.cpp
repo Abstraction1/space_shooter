@@ -58,9 +58,12 @@ void player::movement()
 }
 
 void player::combat() {
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->controls[controls::SHOOT]))
+    if (sf::Keyboard::isKeyPressed(
+        sf::Keyboard::Key(this->controls[controls::SHOOT]))
             && this->shooter_timer_ >= shooter_timer_max_) {
-        this->bullets_.push_back(bullet(bullet_texture_, this->sprite_.getPosition()));
+        this->bullets_.push_back(
+                bullet(bullet_texture_, this->player_center_, 
+                    sf::Vector2f(1.f,0.f), 5.f, 35.f, 0.5f));
 
         this->shooter_timer_ = 0; // reset timer
     }
@@ -76,6 +79,13 @@ void player::update(sf::Vector2u window_bounds)
     if (this->damage_timer_ < this->damage_timer_max_) {
         this->damage_timer_++;
     }
+    
+    //update position
+    
+    this->player_center_.x = 
+        this->sprite_.getPosition().x + this->sprite_.getGlobalBounds().width / 2;
+    this->player_center_.y = 
+        this->sprite_.getPosition().y + this->sprite_.getGlobalBounds().height / 2;
 
     this->movement();
     this->combat();
@@ -83,9 +93,9 @@ void player::update(sf::Vector2u window_bounds)
 
 void player::draw(sf::RenderTarget &target)
 {
-    target.draw(this->sprite_);
-
     for (std::size_t i = 0; i < this->bullets_.size(); ++i) {
         this->bullets_[i].draw(target);
     }
+
+    target.draw(this->sprite_);
 }
