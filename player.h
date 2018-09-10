@@ -16,6 +16,7 @@ public:
     //accessors
     inline std::vector<bullet>& get_bullets() { return this->bullets_; }
     inline const sf::Vector2f& get_position() const { return this->sprite_.getPosition(); }
+    inline const sf::String get_hp_as_string() { return std::to_string(this->hp_) + "/" + std::to_string(this->hp_next_); }
 
     //setters
 
