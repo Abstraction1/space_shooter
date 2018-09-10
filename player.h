@@ -53,6 +53,8 @@ private:
 
     sf::Sprite sprite_;
     sf::RectangleShape hit_box_;
+
+    sf::Vector2f player_center_;
 };
 
 #endif // PLAYER_H
