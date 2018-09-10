@@ -19,6 +19,7 @@ public:
     void init_UI();
     void UIupdate();
     void update();
+    void drawUI();
     void draw();
 
 private:
