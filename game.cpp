@@ -15,9 +15,9 @@ game::game(sf::RenderWindow *window)
     //init player
     this->players_.push_back(player(&player_texture_, &bullet_texture_));
 
-//    this->players_.push_back(player(&player_texture_, &bullet_texture_
-//                                    , sf::Keyboard::I, sf::Keyboard::K
-//                                    , sf::Keyboard::L, sf::Keyboard::RShift));
+    //this->players_.push_back(player(&player_texture_, &bullet_texture_
+                                    //, sf::Keyboard::I, sf::Keyboard::K
+                                    //, sf::Keyboard::L, sf::Keyboard::RShift));
 
     this->init_UI();
 }
@@ -35,11 +35,12 @@ void game::init_texts()
 void game::init_UI()
 {
     sf::Text temp_text;
+
     for (std::size_t i = 0; i < this->players_.size(); ++i) {
         
         //follow text init
         temp_text.setFont(font_);
-        temp_text.setCharacterSize(12);
+        temp_text.setCharacterSize(14);
         temp_text.setFillColor(sf::Color::White);
         temp_text.setString(std::to_string(i));
 
@@ -47,7 +48,7 @@ void game::init_UI()
         
         //static text inits
         temp_text.setFont(font_);
-        temp_text.setCharacterSize(12);
+        temp_text.setCharacterSize(14);
         temp_text.setFillColor(sf::Color::White);
         temp_text.setString("");
 
@@ -59,9 +60,9 @@ void game::init_UI()
 void game::UIupdate()
 {
     for (std::size_t i = 0; i < this->follow_player_texts.size(); ++i) {
-        this->follow_player_texts[i].setPosition(this->players_[i].get_position());
-        this->follow_player_texts[i].setString(std::to_string(i) + " | " 
-                + this->players_[i].get_hp_as_string());
+        this->follow_player_texts[i].setPosition(this->players_[i].get_position().x, this->players_[i].get_position().y - 20.f);
+        this->follow_player_texts[i].setString(std::to_string(i) 
+                + "        -        " + this->players_[i].get_hp_as_string());
     }
 
     for (std::size_t i = 0; i < this->static_player_texts.size(); ++i) {
