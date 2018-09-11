@@ -4,12 +4,10 @@ int main()
 {
     sf::RenderWindow window(sf::VideoMode(1440, 990), "Game", sf::Style::Default);
 
-
     game g(&window);
 
     // game loop
     while (window.isOpen()) {
-
         sf::Event event;
         while (window.pollEvent(event)) {
             if(event.type == sf::Event::Closed) {
@@ -19,7 +17,6 @@ int main()
                 window.close();
             }
         }
-
         g.update();
         g.draw();
     }
