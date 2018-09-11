@@ -23,3 +23,6 @@ bullet.o: bullet.cpp
 
 clean:
 	rm -rf *.o game
+
+run:
+	./$(EXECUTABLE)
