@@ -9,11 +9,12 @@ game::game(sf::RenderWindow *window)
     this->font_.loadFromFile("./Fonts/Dosis-Light.ttf");
 
     //init texture
-    this->player_texture_.loadFromFile("./Textures/ship.png");
-    this->bullet_texture_.loadFromFile("./Textures/missileTex01.png");
+    this->player_texture_.loadFromFile("./Textures/Ships/ship.png");
+    this->bullet_texture_.loadFromFile("./Textures/Guns/missileTex01.png");
+    this->gun_texture_01_.loadFromFile("./Textures/Guns/gun01.png");
 
     //init player
-    this->players_.push_back(player(&player_texture_, &bullet_texture_));
+    this->players_.push_back(player(&player_texture_, &bullet_texture_, &gun_texture_01_));
 
     //this->players_.push_back(player(&player_texture_, &bullet_texture_
                                     //, sf::Keyboard::I, sf::Keyboard::K
@@ -52,8 +53,7 @@ void game::init_UI()
         temp_text.setFillColor(sf::Color::White);
         temp_text.setString("");
 
-        this->static_player_texts.push_back(sf::Text(temp_text));
-        
+        this->static_player_texts.push_back(sf::Text(temp_text));        
     }
 }
 
@@ -61,12 +61,11 @@ void game::UIupdate()
 {
     for (std::size_t i = 0; i < this->follow_player_texts.size(); ++i) {
         this->follow_player_texts[i].setPosition(this->players_[i].get_position().x, this->players_[i].get_position().y - 20.f);
-        this->follow_player_texts[i].setString(std::to_string(i) 
-                + "        -        " + this->players_[i].get_hp_as_string());
+        this->follow_player_texts[i].setString(std::to_string(i) + "        -        " + this->players_[i].get_hp_as_string());
     }
 
     for (std::size_t i = 0; i < this->static_player_texts.size(); ++i) {
-        
+         
     }
 }
 
@@ -86,7 +85,6 @@ void game::update()
                 this->players_[i].get_bullets().erase(this->players_[i].get_bullets().begin() + static_cast<int>(k));
                 break;
             }
-
             //Enemy collision check
         }
     }
@@ -105,7 +103,6 @@ void game::drawUI() {
     }
 }
 
-
 void game::draw()
 {
     this->window_->clear();
@@ -113,8 +110,7 @@ void game::draw()
     for (std::size_t i = 0; i < this->players_.size(); ++i) {
         players_[i].draw(*this->window_);
     }
-    
-    this->drawUI();
 
+    this->drawUI();
     this->window_->display();
 }
