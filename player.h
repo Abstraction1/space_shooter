@@ -34,11 +34,14 @@ private:
     int damage_;
     int damage_max_;
     int score_;
+
     int shooter_timer_;
     int shooter_timer_max_;
     int damage_timer_;
     int damage_timer_max_;
+    
     int controls[5];
+    
     sf::Vector2f current_velocity_;
     float max_velocity_;
     float acceleration_;
@@ -47,9 +50,11 @@ private:
 
     sf::Texture *bullet_texture_;
     std::vector <bullet> bullets_;
+    
     unsigned player_number;
     sf::Texture *texture_;
     sf::Texture gun_texture_01_;
+   
     sf::Sprite sprite_;
     sf::RectangleShape hit_box_;
     sf::Vector2f player_center_;
