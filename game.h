@@ -36,6 +36,7 @@ private:
     //textures
     sf::Texture player_texture_;
     sf::Texture bullet_texture_;
+    sf::Texture gun_texture_01_;
 };
 
 #endif // GAME_H
