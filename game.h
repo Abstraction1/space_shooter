@@ -17,9 +17,9 @@ public:
     //functions
     void init_texts();
     void init_UI();
-    void UIupdate();
+    void update_UI();
     void update();
-    void drawUI();
+    void draw_UI();
     void draw();
 
 private:
