@@ -9,7 +9,7 @@ game::game(sf::RenderWindow *window)
     this->font_.loadFromFile("./Fonts/Dosis-Light.ttf");
 
     //init texture
-    this->player_texture_.loadFromFile("./Textures/Ship/ship.png");
+    this->player_texture_.loadFromFile("./Textures/Ships/ship.png");
     this->bullet_texture_.loadFromFile("./Textures/Guns/missileTex01.png");
     this->gun_texture_01_.loadFromFile("./Textures/Guns/gun01.png");
 
@@ -57,7 +57,7 @@ void game::init_UI()
     }
 }
 
-void game::UIupdate()
+void game::update_UI()
 {
     for (std::size_t i = 0; i < this->follow_player_texts.size(); ++i) {
         this->follow_player_texts[i].setPosition(this->players_[i].get_position().x, this->players_[i].get_position().y - 20.f);
@@ -90,10 +90,10 @@ void game::update()
     }
 
     //update UI
-    this->UIupdate();
+    this->update_UI();
 }
 
-void game::drawUI() {
+void game::draw_UI() {
     for(std::size_t i = 0; i < this->follow_player_texts.size(); ++i) {
         this->window_->draw(this->follow_player_texts[i]);
     }
@@ -111,6 +111,6 @@ void game::draw()
         players_[i].draw(*this->window_);
     }
 
-    this->drawUI();
+    this->draw_UI();
     this->window_->display();
 }
