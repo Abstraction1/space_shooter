@@ -1,5 +1,5 @@
 CXX=g++
-CXXFLAGS=-c -Wall
+CXXFLAGS=-c -g -Wall
 LDFLAGS=-lsfml-window -lsfml-graphics -lsfml-system
 EXECUTABLE=game
 OBJECTS=Objects/
@@ -13,7 +13,7 @@ main.o: main.cpp
 	$(CXX) $(CXXFLAGS) main.cpp -o $(OBJECTS)main.o
 
 game.o: game.cpp
-	$(CXX) $(CXXFLAGS) game.cpp -o $(OBJECTS)game.o 
+	$(CXX) $(CXXFLAGS) game.cpp -o $(OBJECTS)game.o
 
 player.o: player.cpp
 	$(CXX) $(CXXFLAGS) player.cpp -o $(OBJECTS)player.o
