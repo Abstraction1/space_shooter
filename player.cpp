@@ -14,6 +14,10 @@ player::player(sf::Texture *t, sf::Texture *bullet_t, sf::Texture *main_gun_text
 
     this->main_gun_texture_ = main_gun_texture;
     this->main_gun_sprite_.setTexture(*this->main_gun_texture_);
+    this->main_gun_sprite_.setOrigin(
+            this->main_gun_sprite_.getGlobalBounds().width/2,
+            this->main_gun_sprite_.getGlobalBounds().height/2);
+    this->main_gun_sprite_.rotate(90);     
 
     this->shooter_timer_max_ = 25;
     this->shooter_timer_ = this->shooter_timer_max_;
@@ -42,8 +46,8 @@ player::~player()
 void player::update_accessories()
 {
     this->main_gun_sprite_.setPosition(
-            this->player_center_.x - this->main_gun_sprite_.getGlobalBounds().width,
-            this->player_center_.y - this->main_gun_sprite_.getGlobalBounds().height); 
+            this->player_center_.x + 20.f, 
+            this->player_center_.y);
 }
 
 void player::movement()
@@ -106,7 +110,12 @@ void player::movement()
     }
 
     //final move
-    this->sprite_.move(this->current_velocity_.x, this->current_velocity_.y);
+    this->sprite_.move(
+            this->current_velocity_.x, this->current_velocity_.y);
+
+    //update position
+    this->player_center_.x = this->sprite_.getPosition().x + this->sprite_.getGlobalBounds().width / 2;
+    this->player_center_.y = this->sprite_.getPosition().y + this->sprite_.getGlobalBounds().height / 2;
 }
 
 void player::combat() {
@@ -127,11 +136,8 @@ void player::update(sf::Vector2u window_bounds)
         this->damage_timer_++;
     }
     
-    //update position
-    this->player_center_.x = this->sprite_.getPosition().x + this->sprite_.getGlobalBounds().width / 2;
-    this->player_center_.y = this->sprite_.getPosition().y + this->sprite_.getGlobalBounds().height / 2;
-
     this->movement();
+    this->update_accessories();
     this->combat();
 }
 
