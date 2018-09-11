@@ -9,7 +9,7 @@ game::game(sf::RenderWindow *window)
     this->font_.loadFromFile("./Fonts/Dosis-Light.ttf");
 
     //init texture
-    this->player_texture_.loadFromFile("./Textures/Ships/ship.png");
+    this->player_texture_.loadFromFile("./Textures/Ship/ship.png");
     this->bullet_texture_.loadFromFile("./Textures/Guns/missileTex01.png");
     this->gun_texture_01_.loadFromFile("./Textures/Guns/gun01.png");
 
